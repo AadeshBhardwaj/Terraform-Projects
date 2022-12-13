@@ -1,6 +1,6 @@
 # Application Load Balancer Configuration Fetch
 module "ALB" {
-  source = "../ALB"
+  source = "../ALB"  
 }
 
 # Auto-Scaling Group Configuration
@@ -19,5 +19,5 @@ resource "aws_autoscaling_group" "asg" {
 # ASG-ALB Attachment Configuration
 resource "aws_autoscaling_attachment" "asg_alb_attachment" {
   autoscaling_group_name = aws_autoscaling_group.asg.name
-  lb_target_group_arn       = module.ALB.target_group_arns
+  target_group_arn    = aws_lb_target_group.target-group.arn[0]
 }
